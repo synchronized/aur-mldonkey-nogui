@@ -1,6 +1,6 @@
 # Maintainer: Anatol Pomozov <anatol.pomozov@gmail.com>
 
-pkgname=mldonkey
+pkgname=mldonkey-nogui
 _pkgver=3.1.7-2
 pkgver=${_pkgver//-/.}
 pkgrel=1
@@ -9,9 +9,8 @@ arch=(x86_64)
 url='http://mldonkey.sourceforge.net/'
 license=(GPL)
 depends=(file gd hicolor-icon-theme miniupnpc libnatpmp libminiupnpc.so)
-makedepends=(gtk2 librsvg ocaml-num camlp4 lablgtk2)
-optdepends=('librsvg: GUI support'
-            'gtk2: GUI support')
+makedepends=(librsvg ocaml-num camlp4)
+optdepends=('librsvg: GUI support')
 backup=(etc/conf.d/mldonkey)
 source=("https://github.com/ygrek/mldonkey/releases/download/release-${pkgver//./-}/mldonkey-${_pkgver}.tar.bz2"
         "https://raw.githubusercontent.com/gentoo/gentoo/master/net-p2p/mldonkey/files/cpp17-byte-namespace.patch"
@@ -41,7 +40,6 @@ build() {
   cd "mldonkey-${_pkgver}"
   ./configure \
     --prefix=/usr \
-    --enable-gui=newgui2 \
     --enable-upnp-natpmp \
     --enable-batch
 
